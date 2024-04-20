@@ -68,7 +68,7 @@ def projection(points: np.array, *channels, image_size: tuple = (64, 2000)):
             channels=List(*),  # list of projected additional channels
             indices=np.array(shape=(N, 2), dtype=np.int)  # image indices from the list
             inverse=np.array(shape=(H, W), dtype=np.int)  # list indices from the image
-            active=np.array(shape=(N,), dtype=np.bool)  # active array
+            active=np.array(shape=(N,), dtype=bool)  # active array
 
     Raises:
         IndexError if projection is not possible, e.g. if you do not use a KITTI
@@ -148,6 +148,6 @@ def projection(points: np.array, *channels, image_size: tuple = (64, 2000)):
     # Set which points are used in the projection.
     active_list = np.full(depth_list.shape, fill_value=0, dtype=np.int32)
     active_list[list_indices_img] = 1
-    output["active"] = active_list.astype(np.bool)
+    output["active"] = active_list.astype(bool)
 
     return output
